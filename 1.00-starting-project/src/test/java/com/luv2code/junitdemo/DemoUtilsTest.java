@@ -10,6 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 // @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 // @DisplayNameGeneration(DisplayNameGenerator.Simple.class)
 // @DisplayNameGeneration(DisplayNameGenerator.IndicativeSentences.class)
+// @TestMethodOrder(MethodOrderer.MethodName.class)
+// @TestMethodOrder(MethodOrderer.DisplayName.class)
+// @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestMethodOrder(MethodOrderer.Random.class)
 class DemoUtilsTest {
 
     DemoUtils demoUtils;
@@ -42,6 +46,7 @@ class DemoUtilsTest {
 
     @Test
     @DisplayName("Test Equals and Not Equals")
+    // @Order(1)
     void testEqualsAndNotEquals() {
         System.out.println("Running test: testEqualsAndNotEquals");
 
@@ -51,6 +56,7 @@ class DemoUtilsTest {
 
     @Test
     @DisplayName("Test Null and Not Null")
+    // @Order(0) // Lowest number first
     void testNullAndNotNull() {
         System.out.println("Running test: testNullAndNotNull");
 
@@ -74,6 +80,7 @@ class DemoUtilsTest {
 
     @Test
     @DisplayName("Test True and False")
+    // @Order(30)
     void testTrueAndFalse() {
         System.out.println("Running test: testTrueAndFalse");
 
@@ -104,6 +111,7 @@ class DemoUtilsTest {
 
     @Test
     @DisplayName("Test Lines Match")
+    // @Order(50)
     void testLinesMatch() {
         System.out.println("Running test: testLinesMatch");
 
