@@ -2,6 +2,8 @@ package com.luv2code.junitdemo;
 
 import org.junit.jupiter.api.*;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 // @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -10,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DemoUtilsTest {
 
     DemoUtils demoUtils;
+    List<String> theList;
 
     @BeforeAll
     static void setupBeforeAll() {
@@ -25,6 +28,8 @@ class DemoUtilsTest {
     @BeforeEach
     void setupBeforeEach() {
         demoUtils = new DemoUtils();
+        theList = List.of("luv", "2", "code");
+
         System.out.println("@BeforeEach executes before the execution of each test method");
     }
 
@@ -39,8 +44,8 @@ class DemoUtilsTest {
     void testEqualsAndNotEquals() {
         System.out.println("Running test: testEqualsAndNotEquals");
 
-        assertEquals(6, demoUtils.add(2, 4), "2 + 4 must be 6");
-        assertNotEquals(6, demoUtils.add(1, 9), "1 + 9 must not be 6");
+        assertEquals(6, demoUtils.add(2, 4), "2 + 4 should be 6");
+        assertNotEquals(6, demoUtils.add(1, 9), "1 + 9 should not be 6");
     }
 
     @Test
@@ -76,5 +81,31 @@ class DemoUtilsTest {
 
         assertTrue(demoUtils.isGreater(gradeOne, gradeTwo), "This should return true");
         assertFalse(demoUtils.isGreater(gradeTwo, gradeOne), "This should return false");
+    }
+
+    @Test
+    @DisplayName("Test Array Equals")
+    void testArrayEquals() {
+        System.out.println("Running test: testArrayEquals");
+
+        String[] stringArray = {"A", "B", "C"};
+
+        assertArrayEquals(stringArray, demoUtils.getFirstThreeLettersOfAlphabet(), "Arrays should be the same");
+    }
+
+    @Test
+    @DisplayName("Test Iterable Equals")
+    void testIterableEquals() {
+        System.out.println("Running test: testIterableEquals");
+
+        assertIterableEquals(theList, demoUtils.getAcademyInList(), "Excepted list should be same as actual list");
+    }
+
+    @Test
+    @DisplayName("Test Lines Match")
+    void testLinesMatch() {
+        System.out.println("Running test: testLinesMatch");
+
+        assertLinesMatch(theList, demoUtils.getAcademyInList(), "Lines should match");
     }
 }
